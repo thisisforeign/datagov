@@ -35,12 +35,19 @@
             async function getData() {
                 const response = await fetch(api_url);
                 const data = await response.json();
-                const coordinates = data.features[0].geometry.coordinates[0];
+                const coordinates = data.features[0].geometry.coordinates;
                 const time = data.features[0].properties.timestamp;
                 const taxis = data.features[0].properties.taxi_count;
-    
-                console.log(coordinates[0]);
-                //                document.getElementById('long').textContent = longitude;
+
+                for(let i = 0; i < coordinates.length; i++){
+                    const latitude = coordinates[i][1];
+                    const longitude = coordinates[i][0];
+                    L.marker([latitude, longitude]).addTo(map);
+                    console.log(latitude, longitude);
+                }
+
+
+                //setInterval(getData, 5000); // 1000ms
             }
             getData();
         </script>
