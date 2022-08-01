@@ -3,25 +3,28 @@
 
 <head>
     <title>Taxi</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
-        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
-        crossorigin="" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+            integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+            crossorigin="" />
 
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
-        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
-        crossorigin=""></script>
+        <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+            integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+            crossorigin=""></script>
 
+        <script src="leaflet-heat.js"></script>
+        
     <style>
         #taxiMap {
-            height: 180px;
+            height: 700px;
         }
     </style>
 </head>
 
 <body>
         <div id="taxiMap"></div>
+
         <script> 
-            const map = L.map('taxiMap').setView([1.3596929480881816, 103.93675604329403], 13);
+            const map = L.map('taxiMap').setView([1.3692627956207144, 103.81024709856857], 12);
             
             const googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{ //change this for maptile
                 maxZoom: 20,
@@ -30,24 +33,31 @@
             });
             googleStreets.addTo(map);
 
-            const api_url = 'https://api.data.gov.sg/v1/transport/taxi-availability';
+            const api_url = 'https://api.data.gov.sg/v1/transport/taxi-availability'; //change this for api link
             
             async function getData() {
                 const response = await fetch(api_url);
                 const data = await response.json();
-                const coordinates = data.features[0].geometry.coordinates;
-                const time = data.features[0].properties.timestamp;
-                const taxis = data.features[0].properties.taxi_count;
+                const coordinates = data.features[0].geometry.coordinates; //coordinates is inside nested array
+           //     const time = data.features[0].properties.timestamp;
+           //     const taxis = data.features[0].properties.taxi_count;
 
-                for(let i = 0; i < coordinates.length; i++){
+                for(let i = 0; i < coordinates.length/10; i++){
                     const latitude = coordinates[i][1];
                     const longitude = coordinates[i][0];
-                    L.marker([latitude, longitude]).addTo(map);
+
+                    var heat = L.heatLayer([
+                        [latitude, longitude, 0.2]
+                    ], {
+                        radius: 15,
+                        gradient: { 0.5: 'red', 0.0: 'blue' },
+                        minOpacity: 0.3
+                    }).addTo(map);
+                    
                     console.log(latitude, longitude);
                 }
 
 
-                //setInterval(getData, 5000); // 1000ms
             }
             getData();
         </script>
