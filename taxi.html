@@ -96,7 +96,7 @@
     <button id="central" onclick="showCentral()">Central</button>
 
     <div id="noTaxis"></div>
-    <div id="perRegion"></div>
+    <div id="perRegion">Taxis in region: - </div>
     <div id="clock"></div>
 
     <script>
@@ -118,7 +118,7 @@
         var latitude;
         var longitude;
         var taxis;
-
+        var counter = 0;
         var layerGroup = L.layerGroup().addTo(map);
 
         async function getData() {
@@ -144,6 +144,7 @@
 
                     newLayer = L.layerGroup([marker]);
                     newLayer.addTo(map);*/
+                    counter++;
                     L.marker([latitude, longitude]).addTo(layerGroup);
 
               /*      var heat = L.heatLayer([ //uncomment for heat map
@@ -153,10 +154,10 @@
                        gradient: { 0.5: 'red', 0.0: 'blue' },
                        minOpacity: 0.3
                    }).addTo(map);*/
-
-             //      document.getElementById('perRegion').innerHTML =("Taxis in region: ") + taxis.length;
                 }
             }
+            console.log(counter);
+            document.getElementById('perRegion').innerHTML =("Taxis in region: ") + counter;
         }
 
         function showWest() {
