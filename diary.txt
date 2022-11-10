@@ -1,0 +1,46 @@
+stuck getting coordinates out 
+problem 1 nested json object
+problem 2 getting live data and reading nested json object
+
+features > 0(?) > geometry > coordinates
+nvm got it its [0]
+
+next issue is showing the data in a table
+set up files alr
+
+issue with map container not found due to <div> loading after L.map()
+
+--made it messy but got it to work as the div will load before the script but should change for cleanliness
+
+next problem is tileurl makes no sense
+-think we can pick any url ppl designed to make the map look different
+
+--nvm use these to change the map stylev 
+https://www.youtube.com/watch?v=ls_Eue1xUtY&t=525sS
+https://gis.stackexchange.com/questions/225098/using-google-maps-static-tiles-with-leaflet
+
+also map looks like that because its contained in a div
+-find out if can change div to body or smth
+
+problem now is separating x and y e.g. variable:[x,y],[x,y],[x,y],...
+-could maybe use toString() convert all then pick out odd and even array num(?)
+
+added heatmap
+
+add buttons that switch areas when clicked
+-function showNorth is inside function getData
+
+stuck on calling latitude & longitude outside of the for loop to the function
+
+stuck on deleting old markers
+now put markers on a layer then use https://stackoverflow.com/questions/28646317/how-to-remove-all-layers-and-features-from-map
+to remove by checking that layer is !=
+i could try stacking tilelayer upon tilelayer as a substitute
+used this to place markers in a group on a layer https://stackoverflow.com/questions/41256026/clear-marker-layers-leaflet
+
+added timing and converted it from yyyy mm ddthh mm ssz to MMMM Do YYYY, h:mm a
+-https://stackoverflow.com/questions/51595561/how-to-convert-yyyy-mm-ddthhmmssz-to-normal-time-javascript
+
+stuck on displaying number of taxis in a specific region
+-maybe do by latitude but now its stating undefined
+--think its stating that because its printing 1 per loop

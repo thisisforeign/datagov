@@ -1,0 +1,72 @@
+#taxiMap {
+    height: 700px;
+}
+
+#north {
+    background-color: red;
+    color: white;
+    height: 75px;
+    width: 150px;
+}
+
+#west {
+    background-color: blue;
+    color: white;
+    height: 75px;
+    width: 150px;
+}
+
+#northeast {
+    background-color: purple;
+    color: white;
+    height: 75px;
+    width: 150px;
+}
+
+#east {
+    background-color: green;
+    color: white;
+    height: 75px;
+    width: 150px;
+}
+
+#central {
+    background-color: orange;
+    color: white;
+    height: 75px;
+    width: 150px;
+}
+
+#noTaxis {
+    color: black;
+    font-weight: bold;
+    width: 200px;
+    padding: 15px 10px;
+    border: 3px solid black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#perRegion {
+    color: black;
+    font-weight: bold;
+    width: 200px;
+    padding: 15px 10px;
+    border: 3px solid black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#clock {
+    color: black;
+    font-weight: bold;
+    width: 200px;
+    padding: 15px 10px;
+    border: 3px solid black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
