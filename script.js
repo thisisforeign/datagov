@@ -75,15 +75,15 @@ function showWest() {
         
         if (latitude > 1.159 && latitude < 1.433 && longitude > 103.606 && longitude < 103.791){
 
-          //  L.marker([latitude, longitude]).addTo(layerGroup);
+            L.marker([latitude, longitude]).addTo(layerGroup);
 
-          var heat = L.heatLayer([ //uncomment for heat map
-               [latitude, longitude, 0.2]
-           ], {
-               radius: 15,
-               gradient: { 0.5: 'red', 0.0: 'blue' },
-               minOpacity: 0.3
-           }).addTo(map);
+        //   var heat = L.heatLayer([ //uncomment for heat map
+        //        [latitude, longitude, 0.2]
+        //    ], {
+        //        radius: 15,
+        //        gradient: { 0.5: 'red', 0.0: 'blue' },
+        //        minOpacity: 0.3
+        //    }).addTo(map);
            console.log(latitude.length);
            counter++;
         }
@@ -179,8 +179,23 @@ function showCentral() {
    }*/ //this is for regions locations
 getData();
 
-northBtn.addEventListener("click", showNorth);
-westBtn.addEventListener("click", showWest);
-northeastBtn.addEventListener("click", showNE);
-eastBtn.addEventListener("click", showEast);
-centralBtn.addEventListener("click", showCentral);
+northBtn.addEventListener("click", () => {
+    getData();
+    showNorth();
+});
+westBtn.addEventListener("click", () => {
+    getData();
+    showWest();
+});
+northeastBtn.addEventListener("click", () => {
+    getData();
+    showNE();
+});
+eastBtn.addEventListener("click", () => {
+    getData();
+    showEast();
+});
+centralBtn.addEventListener("click", () => {
+    getData();
+    showCentral();
+});
