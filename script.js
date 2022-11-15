@@ -32,8 +32,8 @@ async function getData() {
     const time = data.features[0].properties.timestamp; //add time if u want
     taxis = data.features[0].properties.taxi_count; //add no. of taxis if u want
     
-    document.getElementById('noTaxis').innerHTML =("Total number of taxis: ") + taxis;
-    document.getElementById('clock').innerHTML =("Last updated on: ") + moment(time).format('MMMM Do YYYY, h:mm a');
+    document.getElementById('noTaxis').innerHTML = ("Total number of taxis: ") + taxis;
+    document.getElementById('clock').innerHTML = ("Last updated on: ") + new Date().toLocaleString();
 }
 
 showNorth = () => {
@@ -93,6 +93,7 @@ function showWest() {
 
 function showNE() {
     layerGroup.clearLayers();
+    counter = 0;
 
     for (let i = 0; i < coordinates.length; i++) {
         latitude = coordinates[i][1];
@@ -100,22 +101,25 @@ function showNE() {
 
         if (latitude > 1.334 && latitude < 1.404 && longitude > 103.808 && longitude < 104.089){
 
-           // L.marker([latitude, longitude]).addTo(layerGroup);
+           L.marker([latitude, longitude]).addTo(layerGroup);
 
-           var heat = L.heatLayer([ //uncomment for heat map
-               [latitude, longitude, 0.2]
-           ], {
-               radius: 15,
-               gradient: { 0.5: 'red', 0.0: 'blue' },
-               minOpacity: 0.3
-           }).addTo(map);
-
+        //    var heat = L.heatLayer([ //uncomment for heat map
+        //        [latitude, longitude, 0.2]
+        //    ], {
+        //        radius: 15,
+        //        gradient: { 0.5: 'red', 0.0: 'blue' },
+        //        minOpacity: 0.3
+        //    }).addTo(map);
+           console.log(latitude.length);
+           counter++;
         }
     }
+    document.getElementById('perRegion').innerHTML = "Taxis in region: " + counter;
 }
 
 function showEast() {
     layerGroup.clearLayers();
+    counter = 0;
 
     for (let i = 0; i < coordinates.length; i++) {
         latitude = coordinates[i][1];
@@ -132,13 +136,15 @@ function showEast() {
                gradient: { 0.5: 'red', 0.0: 'blue' },
                minOpacity: 0.3
            }).addTo(map);
-
+           console.log(latitude.length);
+           counter++;
         }
     }
 }
 
 function showCentral() {
     layerGroup.clearLayers();
+    counter = 0;
 
     for (let i = 0; i < coordinates.length; i++) {
         latitude = coordinates[i][1];
@@ -155,7 +161,8 @@ function showCentral() {
                gradient: { 0.5: 'red', 0.0: 'blue' },
                minOpacity: 0.3
            }).addTo(map);
-
+           console.log(latitude.length);
+           counter++;
         }
     }
 }
