@@ -10,6 +10,12 @@ googleStreetsLayer.addTo(map); //add layer to map
 
 const api_url = 'https://api.data.gov.sg/v1/transport/taxi-availability'; //change this for api link
 
+const northBtn = document.querySelector("#north");
+const westBtn = document.querySelector("#west");
+const northeastBtn = document.querySelector("#northeast");
+const eastBtn = document.querySelector("#east");
+const centralBtn = document.querySelector("#central");
+
 var response;
 var data;
 var coordinates;
@@ -32,6 +38,7 @@ async function getData() {
 
 showNorth = () => {
     layerGroup.clearLayers();
+    counter = 0;
 
     for (let i = 0; i < coordinates.length; i++) {
         latitude = coordinates[i][1];
@@ -55,11 +62,12 @@ showNorth = () => {
         }
     }
     console.log(counter);
-    document.getElementById('perRegion').innerHTML =("Taxis in region: ") + counter;
+    document.getElementById('perRegion').innerHTML = "Taxis in region: " + counter;
 }
 
 function showWest() {
     layerGroup.clearLayers();
+    counter = 0;
 
     for (let i = 0; i < coordinates.length; i++) {
         latitude = coordinates[i][1];
@@ -77,8 +85,10 @@ function showWest() {
                minOpacity: 0.3
            }).addTo(map);
            console.log(latitude.length);
+           counter++;
         }
     }
+    document.getElementById('perRegion').innerHTML = "Taxis in region: " + counter;
 }
 
 function showNE() {
@@ -168,3 +178,9 @@ function showCentral() {
 
    }*/ //this is for regions locations
 getData();
+
+northBtn.addEventListener("click", showNorth);
+westBtn.addEventListener("click", showWest);
+northeastBtn.addEventListener("click", showNE);
+eastBtn.addEventListener("click", showEast);
+centralBtn.addEventListener("click", showCentral);
