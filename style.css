@@ -1,9 +1,14 @@
 body {
-    background: linear-gradient(#f2001b, #ffffff);
+    background: rgb(231,35,52);
+    background: linear-gradient(180deg, rgba(231,35,52,1) 0%, rgba(247,247,247,1) 100%);
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 #taxiMap {
     height: 700px;
+    width: 75%;
+    margin-top: 20px;
 }
 
 #north {
@@ -41,6 +46,14 @@ body {
     width: 150px;
 }
 
+#toggle{
+    background-color: #3f92cf;
+    color: white;
+    height: 75px;
+    width: 150px;
+    margin-left: 700px;
+}
+
 #noTaxis {
     color: black;
     font-weight: bold;
@@ -69,4 +82,20 @@ body {
     border: 3px solid black;
     border-radius: 5px;
     text-align: center;
+}
+
+#mapContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#btnContainer{
+    display: flex;
+    justify-content: center;
+}
+
+#legendContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

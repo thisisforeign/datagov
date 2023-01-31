@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Taxi</title>
+    <title>Taxi Api</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
         integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
         crossorigin="" />
@@ -19,16 +19,22 @@
 </head>
 
 <body>
-    <div id="taxiMap"></div>
-    <button id="north">North</button>
-    <button id="west">West</button>
-    <button id="northeast">North East</button>
-    <button id="east">East</button>
-    <button id="central">Central</button>
-
-    <div id="noTaxis"></div>
-    <div id="perRegion">Taxis in region: - </div>
-    <div id="clock"></div>
+    <div id="mapContainer">
+        <div id="taxiMap"></div>
+    </div>
+    <div id="btnContainer">
+        <button id="north">North</button>
+        <button id="west">West</button>
+        <button id="northeast">North East</button>
+        <button id="east">East</button>
+        <button id="central">Central</button>
+        <button id="toggle">Showing: Markers</button>
+    </div>
+    <div id="legendContainer">
+        <div id="noTaxis"></div>
+        <div id="perRegion">Taxis in region: - </div>
+        <div id="clock"></div>
+    </div>
 </body>
 
 </html>

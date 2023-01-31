@@ -1,4 +1,4 @@
-const map = L.map('taxiMap').setView([1.3692627956207144, 103.81024709856857], 12); //create map
+const map = L.map('taxiMap').setView([1.3592627956207144, 103.81024709856857], 12); //create map
 
 const googleStreetsLayer = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', { //create layer change this for maptile
     maxZoom: 20,
@@ -15,6 +15,7 @@ const westBtn = document.querySelector("#west");
 const northeastBtn = document.querySelector("#northeast");
 const eastBtn = document.querySelector("#east");
 const centralBtn = document.querySelector("#central");
+const toggleBtn = document.querySelector("#toggle");
 
 var response;
 var data;
@@ -24,6 +25,7 @@ var longitude;
 var taxis;
 var counter = 0;
 var layerGroup = L.layerGroup().addTo(map);
+var setToggle = false;
 
 async function getData() {
     response = await fetch(api_url);
@@ -167,6 +169,17 @@ function showCentral() {
     }
 }
 
+function changeMarker(e){
+    if(setToggle === false){
+        e.target.innerText = "Showing: Heat Map";
+        setToggle = true;
+    }
+    else{
+        e.target.innerText = "Showing: Markers";
+        setToggle = false;
+    }
+}
+
 /*   console.log(latitude, longitude);
    if (latitude > 1.310 && latitude < 1.399 && longitude > 103.929 && longitude < 104.043) {
        alert("working");
@@ -206,3 +219,6 @@ centralBtn.addEventListener("click", () => {
     getData();
     showCentral();
 });
+toggleBtn.addEventListener("click", (e) => {
+    changeMarker(e);
+})
