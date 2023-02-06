@@ -1,6 +1,6 @@
 body {
     background: rgb(231,35,52);
-    background: linear-gradient(180deg, rgba(231,35,52,1) 0%, rgba(247,247,247,1) 100%);
+    background: linear-gradient(#e72334, white);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -8,7 +8,7 @@ body {
 #taxiMap {
     height: 700px;
     width: 75%;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #north {
@@ -18,11 +18,19 @@ body {
     width: 150px;
 }
 
+#north:hover, #north:focus{
+    background-color: rgb(252, 94, 94);
+}
+
 #west {
     background-color: blue;
     color: white;
     height: 75px;
     width: 150px;
+}
+
+#west:hover, #west:focus{
+    background-color: rgb(72, 72, 255);
 }
 
 #northeast {
@@ -32,11 +40,19 @@ body {
     width: 150px;
 }
 
+#northeast:hover, #northeast:focus{
+    background-color: rgb(151, 2, 151);
+}
+
 #east {
     background-color: green;
     color: white;
     height: 75px;
     width: 150px;
+}
+
+#east:hover, #east:focus{
+    background-color: rgb(1, 161, 1);
 }
 
 #central {
@@ -46,39 +62,31 @@ body {
     width: 150px;
 }
 
+#central:hover, #central:focus{
+    background-color: rgb(253, 182, 49);
+}
+
 #toggle{
     background-color: #3f92cf;
     color: white;
     height: 75px;
     width: 150px;
-    margin-left: 700px;
+    margin-left: 200px;
+}
+
+#toggle:hover{
+    background-color:#5b9fcf;
 }
 
 #noTaxis {
-    color: black;
-    font-weight: bold;
-    width: 200px;
-    padding: 15px 10px;
-    border: 3px solid black;
-    border-radius: 5px;
-    text-align: center;
+    margin-top: 2px;
 }
 
-#perRegion {
+#noTaxis, #perRegion, #clock {
     color: black;
     font-weight: bold;
     width: 200px;
-    padding: 15px 10px;
-    border: 3px solid black;
-    border-radius: 5px;
-    text-align: center;
-}
-
-#clock {
-    color: black;
-    font-weight: bold;
-    width: 200px;
-    padding: 15px 10px;
+    padding: 13px 10px;
     border: 3px solid black;
     border-radius: 5px;
     text-align: center;
@@ -98,4 +106,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+button:not(#central, #toggle){
+    border-right: none;
+}
+
+button{
+    transition-duration: 0.4s;
+}
+
+button:hover{
+    cursor: pointer;
 }
