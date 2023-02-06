@@ -38,10 +38,10 @@ async function getData() {
     document.getElementById('clock').innerHTML = ("Last updated on: ") + new Date().toLocaleString();
 }
 
-showNorth = () => {
+function showNorth() {
     layerGroup.clearLayers();
     counter = 0;
-
+    
     for (let i = 0; i < coordinates.length; i++) {
         latitude = coordinates[i][1];
         longitude = coordinates[i][0];
@@ -51,19 +51,21 @@ showNorth = () => {
 
             newLayer = L.layerGroup([marker]);
             newLayer.addTo(map);*/
+            if(setToggle === false){
+                L.marker([latitude, longitude]).addTo(layerGroup);
+            }
+            else if(setToggle === true){
+                var heat = L.heatLayer([ 
+                [latitude, longitude, 0.2]
+            ], {
+                minOpacity: 0.4,
+                radius: 20,
+                gradient: { 0.5: 'red', 0.0: 'blue' }
+            }).addTo(layerGroup);
+            }
             counter++;
-            L.marker([latitude, longitude]).addTo(layerGroup);
-
-      /*      var heat = L.heatLayer([ //uncomment for heat map
-               [latitude, longitude, 0.2]
-           ], {
-               radius: 15,
-               gradient: { 0.5: 'red', 0.0: 'blue' },
-               minOpacity: 0.3
-           }).addTo(map);*/
         }
     }
-    console.log(counter);
     document.getElementById('perRegion').innerHTML = "Taxis in region: " + counter;
 }
 
@@ -77,16 +79,18 @@ function showWest() {
         
         if (latitude > 1.159 && latitude < 1.433 && longitude > 103.606 && longitude < 103.791){
 
-            L.marker([latitude, longitude]).addTo(layerGroup);
-
-        //   var heat = L.heatLayer([ //uncomment for heat map
-        //        [latitude, longitude, 0.2]
-        //    ], {
-        //        radius: 15,
-        //        gradient: { 0.5: 'red', 0.0: 'blue' },
-        //        minOpacity: 0.3
-        //    }).addTo(map);
-           console.log(latitude.length);
+            if(setToggle === false){
+                L.marker([latitude, longitude]).addTo(layerGroup);
+            }
+            else if(setToggle === true){
+                var heat = L.heatLayer([ 
+                [latitude, longitude, 0.2]
+            ], {
+                minOpacity: 0.4,
+                radius: 20,
+                gradient: { 0.5: 'red', 0.0: 'blue' }
+            }).addTo(layerGroup);
+            }
            counter++;
         }
     }
@@ -103,16 +107,18 @@ function showNE() {
 
         if (latitude > 1.334 && latitude < 1.404 && longitude > 103.808 && longitude < 104.089){
 
-           L.marker([latitude, longitude]).addTo(layerGroup);
-
-        //    var heat = L.heatLayer([ //uncomment for heat map
-        //        [latitude, longitude, 0.2]
-        //    ], {
-        //        radius: 15,
-        //        gradient: { 0.5: 'red', 0.0: 'blue' },
-        //        minOpacity: 0.3
-        //    }).addTo(map);
-           console.log(latitude.length);
+            if(setToggle === false){
+                L.marker([latitude, longitude]).addTo(layerGroup);
+            }
+            else if(setToggle === true){
+                var heat = L.heatLayer([
+                [latitude, longitude, 0.2]
+            ], {
+                minOpacity: 0.4,
+                radius: 20,
+                gradient: { 0.5: 'red', 0.0: 'blue' }
+            }).addTo(layerGroup);
+            }
            counter++;
         }
     }
@@ -129,19 +135,22 @@ function showEast() {
 
         if (latitude > 1.310 && latitude < 1.399 && longitude > 103.929 && longitude < 104.043){
 
-           // L.marker([latitude, longitude]).addTo(layerGroup);
-
-           var heat = L.heatLayer([ //uncomment for heat map
-               [latitude, longitude, 0.2]
-           ], {
-               radius: 15,
-               gradient: { 0.5: 'red', 0.0: 'blue' },
-               minOpacity: 0.3
-           }).addTo(map);
-           console.log(latitude.length);
+            if(setToggle === false){
+                L.marker([latitude, longitude]).addTo(layerGroup);
+            }
+            else if(setToggle === true){
+                var heat = L.heatLayer([ 
+                [latitude, longitude, 0.2]
+            ], {
+                minOpacity: 0.4,
+                radius: 20,
+                gradient: { 0.5: 'red', 0.0: 'blue' }
+            }).addTo(layerGroup);
+            }
            counter++;
         }
     }
+    document.getElementById('perRegion').innerHTML = "Taxis in region: " + counter;
 }
 
 function showCentral() {
@@ -153,23 +162,27 @@ function showCentral() {
         longitude = coordinates[i][0];
 
         if (latitude > 1.213 && latitude < 1.373 && longitude > 103.750 && longitude < 103.915){
-
-           // L.marker([latitude, longitude]).addTo(layerGroup);
-
-           var heat = L.heatLayer([ //uncomment for heat map
-               [latitude, longitude, 0.2]
-           ], {
-               radius: 15,
-               gradient: { 0.5: 'red', 0.0: 'blue' },
-               minOpacity: 0.3
-           }).addTo(map);
-           console.log(latitude.length);
+            
+            if(setToggle === false){
+                L.marker([latitude, longitude]).addTo(layerGroup);
+            }
+            else if(setToggle === true){
+                var heat = L.heatLayer([ 
+                [latitude, longitude, 0.2]
+            ], {
+                radius: 15,
+                gradient: { 0.5: 'red', 0.0: 'blue' },
+                minOpacity: 0.3
+            }).addTo(layerGroup);
+            }
            counter++;
         }
     }
+    document.getElementById('perRegion').innerHTML = "Taxis in region: " + counter;
 }
 
 function changeMarker(e){
+    layerGroup.clearLayers();
     if(setToggle === false){
         e.target.innerText = "Showing: Heat Map";
         setToggle = true;
@@ -180,23 +193,6 @@ function changeMarker(e){
     }
 }
 
-/*   console.log(latitude, longitude);
-   if (latitude > 1.310 && latitude < 1.399 && longitude > 103.929 && longitude < 104.043) {
-       alert("working");
-       //L.marker([latitude, longitude]).addTo(map);
-   }
-   else if(latitude > 1.334 && latitude < 1.404 && longitude > 103.808 && longitude < 104.089){
-       console.log("he");
-   }
-   else if(latitude > 1.360 && latitude < 1.471 && longitude > 103.681 && longitude < 103.866){
-
-   }
-   else if(latitude > 1.213 && latitude < 1.373 && longitude > 103.750 && longitude < 103.915){
-
-   }
-   else if(latitude > 1.159 && latitude < 1.433 && longitude > 103.606 && longitude < 103.791){
-
-   }*/ //this is for regions locations
 getData();
 
 northBtn.addEventListener("click", () => {
