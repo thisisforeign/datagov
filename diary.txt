@@ -44,3 +44,6 @@ added timing and converted it from yyyy mm ddthh mm ssz to MMMM Do YYYY, h:mm a
 stuck on displaying number of taxis in a specific region
 -maybe do by latitude but now its stating undefined
 --think its stating that because its printing 1 per loop
+
+had issue with background bugging out and turning grey so added: canvas.getContext("2d", { willReadFrequently: true }) to leaflet-heat.js where the original canvas was created
+-https://stackoverflow.com/questions/74101155/chrome-warning-willreadfrequently-attribute-set-to-true
