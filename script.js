@@ -35,7 +35,7 @@ async function getData() {
     taxis = data.features[0].properties.taxi_count; //add no. of taxis if u want
     
     document.getElementById('noTaxis').innerHTML = ("Total number of taxis: ") + taxis;
-    document.getElementById('clock').innerHTML = ("Last updated on: ") + new Date().toLocaleString();
+    document.getElementById('clock').innerHTML = ("Last updated on: ") + new Date(time).toLocaleString('en-GB');
 }
 
 function showNorth() {
